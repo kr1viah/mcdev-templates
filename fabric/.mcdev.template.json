@@ -89,6 +89,12 @@
       "default": true
     },
     {
+      "name": "ADD_COMMENTS",
+      "type": "boolean",
+      "remember": "fabric.ADD_COMMENTS",
+      "default": true
+    },
+    {
       "name": "USE_DATAGEN",
       "type": "boolean",
       "default": true,
