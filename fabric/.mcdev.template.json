@@ -172,22 +172,22 @@
       "condition": "$USE_GIT"
     },
     {
-      "template": "build.gradle.ft",
+      "template": "java/build.gradle.ft",
       "destination": "build.gradle",
       "condition": "$LANGUAGE == 'Java'"
     },
     {
-      "template": "settings.gradle.ft",
+      "template": "java/settings.gradle.ft",
       "destination": "settings.gradle",
       "condition": "$LANGUAGE == 'Java'"
     },
     {
-      "template": "build.gradle.kts.ft",
+      "template": "kotlin/build.gradle.kts.ft",
       "destination": "build.gradle.kts",
       "condition": "$LANGUAGE == 'Kotlin'"
     },
     {
-      "template": "settings.gradle.kts.ft",
+      "template": "kotlin/settings.gradle.kts.ft",
       "destination": "settings.gradle.kts",
       "condition": "$LANGUAGE == 'Kotlin'"
     },
@@ -220,37 +220,37 @@
       }
     },
     {
-      "template": "Initializer.java.ft",
+      "template": "java/Initializer.java.ft",
       "destination": "src/main/java/${MAIN_CLASS.path}.java",
       "condition": "$LANGUAGE == 'Java' && $MAIN_INIT == true",
       "openInEditor": true
     },
     {
-      "template": "ClientInitializer.java.ft",
+      "template": "java/ClientInitializer.java.ft",
       "destination": "src/${CLIENT_SOURCE_SET}/java/${MAIN_CLASS.packagePath}/client/${MAIN_CLASS.className}Client.java",
       "condition": "$LANGUAGE == 'Java' && $MOD_ENVIRONMENT != 'server' && $CLIENT_INIT == true",
       "openInEditor": true
     },
     {
-      "template": "Initializer.kt.ft",
+      "template": "kotlin/Initializer.kt.ft",
       "destination": "src/main/kotlin/${MAIN_CLASS.path}.kt",
       "condition": "$LANGUAGE == 'Kotlin' && $MAIN_INIT == true",
       "openInEditor": true
     },
     {
-      "template": "ClientInitializer.kt.ft",
+      "template": "kotlin/ClientInitializer.kt.ft",
       "destination": "src/${CLIENT_SOURCE_SET}/kotlin/${MAIN_CLASS.packagePath}/client/${MAIN_CLASS.className}Client.kt",
       "condition": "$LANGUAGE == 'Kotlin' && $MOD_ENVIRONMENT != 'server' && $CLIENT_INIT == true",
       "openInEditor": true
     },
     {
-      "template": "DataGenerator.java.ft",
+      "template": "java/DataGenerator.java.ft",
       "destination": "src/${CLIENT_SOURCE_SET}/java/${MAIN_CLASS.packagePath}/client/${MAIN_CLASS.className}DataGenerator.java",
       "condition": "$LANGUAGE == 'Java' && $USE_DATAGEN",
       "openInEditor": true
     },
     {
-      "template": "DataGenerator.kt.ft",
+      "template": "kotlin/DataGenerator.kt.ft",
       "destination": "src/${CLIENT_SOURCE_SET}/kotlin/${MAIN_CLASS.packagePath}/client/${MAIN_CLASS.className}DataGenerator.kt",
       "condition": "$LANGUAGE == 'Kotlin' && $USE_DATAGEN",
       "openInEditor": true
