@@ -4,7 +4,7 @@
 #if (!$CLIENT)
   "package": "${MAIN_CLASS.packageName}.mixin",
 #else
-  "package": "${MAIN_CLASS.packageName}.mixin.client",
+  "package": "${MAIN_CLASS.packageName}.client.mixin",
 #end
   "compatibilityLevel": "JAVA_${JAVA_VERSION}",
 #if (!($SPLIT_SOURCES && $VERSIONS.minecraftVersion.compareTo($mcver.MC1_18) >= 0) || !$CLIENT)
