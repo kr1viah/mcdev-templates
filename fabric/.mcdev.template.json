@@ -46,25 +46,41 @@
       "name": "MIXIN_PLUGIN",
       "type": "boolean",
       "remember": "fabric.MIXIN_PLUGIN",
-      "default": false
+      "default": false,
+      "visible": {
+        "dependsOn": ["MOD_ENVIRONMENT"],
+        "condition": "$MOD_ENVIRONMENT.equals(\"server\") || $MOD_ENVIRONMENT.equals(\"*\")"
+      }
     },
     {
       "name": "MIXIN_PLUGIN_CLIENT",
       "type": "boolean",
       "remember": "fabric.MIXIN_PLUGIN_CLIENT",
-      "default": false
+      "default": false,
+      "visible": {
+        "dependsOn": ["MOD_ENVIRONMENT"],
+        "condition": "$MOD_ENVIRONMENT.equals(\"client\") || $MOD_ENVIRONMENT.equals(\"*\")"
+      }
     },
     {
       "name": "CLIENT_INIT",
       "type": "boolean",
       "remember": "fabric.CLIENT_INIT",
-      "default": true
+      "default": true,
+      "visible": {
+        "dependsOn": ["MOD_ENVIRONMENT"],
+        "condition": "$MOD_ENVIRONMENT.equals(\"client\") || $MOD_ENVIRONMENT.equals(\"*\")"
+      }
     },
     {
       "name": "MAIN_INIT",
       "type": "boolean",
       "remember": "fabric.MAIN_INIT",
-      "default": true
+      "default": true,
+      "visible": {
+        "dependsOn": ["MOD_ENVIRONMENT"],
+        "condition": "$MOD_ENVIRONMENT.equals(\"server\") || $MOD_ENVIRONMENT.equals(\"*\")"
+      }
     },
     {
       "name": "USE_MIXINS",
