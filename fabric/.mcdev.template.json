@@ -43,6 +43,18 @@
       "default": "*"
     },
     {
+      "name": "CLIENT_INIT",
+      "type": "boolean",
+      "remember": "fabric.CLIENT_INIT",
+      "default": true
+    },
+    {
+      "name": "MAIN_INIT",
+      "type": "boolean",
+      "remember": "fabric.MAIN_INIT",
+      "default": true
+    },
+    {
       "name": "USE_MIXINS",
       "type": "boolean",
       "remember": "fabric.USE_MIXINS",
@@ -210,25 +222,25 @@
     {
       "template": "Initializer.java.ft",
       "destination": "src/main/java/${MAIN_CLASS.path}.java",
-      "condition": "$LANGUAGE == 'Java'",
+      "condition": "$LANGUAGE == 'Java' && $MAIN_INIT == true",
       "openInEditor": true
     },
     {
       "template": "ClientInitializer.java.ft",
       "destination": "src/${CLIENT_SOURCE_SET}/java/${MAIN_CLASS.packagePath}/client/${MAIN_CLASS.className}Client.java",
-      "condition": "$LANGUAGE == 'Java' && $MOD_ENVIRONMENT != 'server'",
+      "condition": "$LANGUAGE == 'Java' && $MOD_ENVIRONMENT != 'server' && $CLIENT_INIT == true",
       "openInEditor": true
     },
     {
       "template": "Initializer.kt.ft",
       "destination": "src/main/kotlin/${MAIN_CLASS.path}.kt",
-      "condition": "$LANGUAGE == 'Kotlin'",
+      "condition": "$LANGUAGE == 'Kotlin' && $MAIN_INIT == true",
       "openInEditor": true
     },
     {
       "template": "ClientInitializer.kt.ft",
       "destination": "src/${CLIENT_SOURCE_SET}/kotlin/${MAIN_CLASS.packagePath}/client/${MAIN_CLASS.className}Client.kt",
-      "condition": "$LANGUAGE == 'Kotlin' && $MOD_ENVIRONMENT != 'server'",
+      "condition": "$LANGUAGE == 'Kotlin' && $MOD_ENVIRONMENT != 'server' && $CLIENT_INIT == true",
       "openInEditor": true
     },
     {

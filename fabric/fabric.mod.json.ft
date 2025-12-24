@@ -17,10 +17,12 @@
 #if ($USE_DATAGEN)
     "fabric-datagen": ["${MAIN_CLASS.packageName}.client.${MAIN_CLASS.className}DataGenerator"],
 #end
-#if (${MOD_ENVIRONMENT} != 'server')
-    "client": ["${MAIN_CLASS.packageName}.client.${MAIN_CLASS.className}Client"],
+#if (${MOD_ENVIRONMENT} != 'server' && $CLIENT_INIT == true)
+    "client": ["${MAIN_CLASS.packageName}.client.${MAIN_CLASS.className}Client"]
 #end
-    "main": ["${MAIN_CLASS}"]
+#if ($MAIN_INIT == true)
+    ,"main": ["${MAIN_CLASS}"]
+#end
   },
 
 #if (${USE_MIXINS})
