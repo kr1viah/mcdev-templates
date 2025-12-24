@@ -15,6 +15,11 @@
   "client": [
   ],
 #end
+#if (!$CLIENT)
+  "plugin": "${MAIN_CLASS.packageName}.MixinPlugin",
+#else
+  "plugin": "${MAIN_CLASS.packageName}.client.MixinPluginClient",
+#end
   "injectors": {
     "defaultRequire": 1
   },

@@ -43,6 +43,18 @@
       "default": "*"
     },
     {
+      "name": "MIXIN_PLUGIN",
+      "type": "boolean",
+      "remember": "fabric.MIXIN_PLUGIN",
+      "default": false
+    },
+    {
+      "name": "MIXIN_PLUGIN_CLIENT",
+      "type": "boolean",
+      "remember": "fabric.MIXIN_PLUGIN_CLIENT",
+      "default": false
+    },
+    {
       "name": "CLIENT_INIT",
       "type": "boolean",
       "remember": "fabric.CLIENT_INIT",
@@ -253,6 +265,30 @@
       "template": "kotlin/DataGenerator.kt.ft",
       "destination": "src/${CLIENT_SOURCE_SET}/kotlin/${MAIN_CLASS.packagePath}/client/${MAIN_CLASS.className}DataGenerator.kt",
       "condition": "$LANGUAGE == 'Kotlin' && $USE_DATAGEN",
+      "openInEditor": true
+    },
+    {
+      "template": "java/MixinPluginClient.java.ft",
+      "destination": "src/${CLIENT_SOURCE_SET}/java/${MAIN_CLASS.packagePath}/client/MixinPluginClient.java",
+      "condition": "$LANGUAGE == 'Java' && $MIXIN_PLUGIN_CLIENT",
+      "openInEditor": true
+    },
+    {
+      "template": "kotlin/MixinPluginClient.kt.ft",
+      "destination": "src/${CLIENT_SOURCE_SET}/kotlin/${MAIN_CLASS.packagePath}/client/MixinPluginClient.kt",
+      "condition": "$LANGUAGE == 'Kotlin' && $MIXIN_PLUGIN_CLIENT",
+      "openInEditor": true
+    },
+    {
+      "template": "java/MixinPlugin.java.ft",
+      "destination": "src/main/java/${MAIN_CLASS.packagePath}/MixinPlugin.java",
+      "condition": "$LANGUAGE == 'Java' && $MIXIN_PLUGIN",
+      "openInEditor": true
+    },
+    {
+      "template": "kotlin/MixinPlugin.kt.ft",
+      "destination": "src/main/kotlin/${MAIN_CLASS.packagePath}/MixinPlugin.kt",
+      "condition": "$LANGUAGE == 'Kotlin' && $MIXIN_PLUGIN",
       "openInEditor": true
     },
     {
