@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '${VERSIONS.loom}'
+    id 'net.fabricmc.fabric-loom' version '${VERSIONS.loom}'
     id 'maven-publish'
 }
 
@@ -10,7 +10,17 @@ base {
     archivesName = project.archives_base_name
 }
 
+repositories {
+#if ($ADD_COMMENTS)
+    // Add repositories to retrieve artifacts from in here.
+    // You should only use this when depending on other mods because
+    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+    // for more information about repositories.
+#end
+}
 #if (($SPLIT_SOURCES && $VERSIONS.minecraftVersion.compareTo($mcver.MC1_18) >= 0) || $ACCESS_WIDENER)
+
 loom {
 #if ($SPLIT_SOURCES && $VERSIONS.minecraftVersion.compareTo($mcver.MC1_18) >= 0)
     splitEnvironmentSourceSets()
@@ -36,21 +46,12 @@ fabricApi {
 }
 #end
 
-repositories {
-#if ($ADD_COMMENTS)
-    // Add repositories to retrieve artifacts from in here.
-    // You should only use this when depending on other mods because
-    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-    // for more information about repositories.
-#end
-}
-
 dependencies {
 #if ($ADD_COMMENTS)
     // To change the versions see the gradle.properties file
 #end
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
+#if (${VERSIONS.minecraft.compareTo($mcver.MC1_21_11)} <= 0)
 #if (${VERSIONS.useOfficialMappings})
     mappings loom.officialMojangMappings()
 #else
@@ -61,17 +62,25 @@ dependencies {
 #if (${VERSIONS.useFabricApi})
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 #end
+#else
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+#if (${VERSIONS.useFabricApi})
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+#end
+#end
 }
 
 processResources {
+    def mcVer = project.minecraft_version.toString().replace("-snapshot-", "-alpha.")
     inputs.property "version", project.version
-    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "minecraft_version", mcVer
     inputs.property "loader_version", project.loader_version
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
-                "minecraft_version": project.minecraft_version,
+                "minecraft_version": mcVer,
                 "loader_version": project.loader_version
     }
 }
