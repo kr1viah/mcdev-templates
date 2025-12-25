@@ -1,12 +1,18 @@
+#if ($ADD_COMMENTS)
 # Done to increase the memory available to gradle.
+#end
 org.gradle.jvmargs=-Xmx1G
 org.gradle.parallel=true
 
+#if ($ADD_COMMENTS)
 # IntelliJ IDEA is not yet fully compatible with configuration cache, see: https://github.com/FabricMC/fabric-loom/issues/1349
+#end
 org.gradle.configuration-cache=false
 
+#if ($ADD_COMMENTS)
 # Fabric Properties
 # check these on https://modmuss50.me/fabric.html
+#end
 minecraft_version=${VERSIONS.minecraftVersion}
 #if (!${VERSIONS.useOfficialMappings} && ${VERSIONS.minecraft.compareTo($mcver.MC1_21_11)} <= 0)
 yarn_mappings=${VERSIONS.yarn}
@@ -16,12 +22,16 @@ loader_version=${VERSIONS.loader}
 kotlin_loader_version=${KOTLIN_LOADER_VERSION}
 #end
 
+#if ($ADD_COMMENTS)
 # Mod Properties
+#end
 mod_version = ${BUILD_COORDS.version}
 maven_group = ${BUILD_COORDS.groupId}
 archives_base_name = ${BUILD_COORDS.artifactId}
 
 #if (${VERSIONS.useFabricApi})
+#if ($ADD_COMMENTS)
 # Dependencies
+#end
 fabric_version=${VERSIONS.fabricApi}
 #end
