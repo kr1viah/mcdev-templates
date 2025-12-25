@@ -1,0 +1,13 @@
+#if ($ADD_COMMENTS)
+# Fabric Properties
+# check these on https://modmuss50.me/fabric.html
+#end
+minecraft_version=${VERSIONS.minecraftVersion}
+yarn_mappings=${VERSIONS.yarn}
+
+#if (${VERSIONS.useFabricApi})
+#if ($ADD_COMMENTS)
+# Dependencies
+#end
+fabric_version=${VERSIONS.fabricApi}
+#end

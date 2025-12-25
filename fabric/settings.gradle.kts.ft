@@ -3,6 +3,24 @@ pluginManagement {
         maven("https://maven.fabricmc.net/") {
             name = "Fabric"
         }
+#if ($STONECUTTER)
+        maven("https://maven.kikugie.dev/snapshots") {
+            name = "KikuGie Snapshots"
+        }
+#end
         gradlePluginPortal()
     }
 }
+
+#if ($STONECUTTER)
+plugins {
+    id("dev.kikugie.stonecutter") version "0.8"
+}
+
+stonecutter {
+    create(rootProject) {
+        versions("${VERSIONS.minecraftVersion}")
+        vcsVersion = "${VERSIONS.minecraftVersion}"
+    }
+}
+#end

@@ -42,7 +42,11 @@ loom {
     }
 #end
 #if ($ACCESS_WIDENER)
+#if ($STONECUTTER)
+    accessWidenerPath = rootProject.file("src/main/resources/${MOD_ID}.classtweaker")
+#else
     accessWidenerPath = file("src/main/resources/${MOD_ID}.classtweaker")
+#end
 #end
 }
 #end

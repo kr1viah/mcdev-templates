@@ -13,9 +13,11 @@ org.gradle.configuration-cache=false
 # Fabric Properties
 # check these on https://modmuss50.me/fabric.html
 #end
+#if (!$STONECUTTER)
 minecraft_version=${VERSIONS.minecraftVersion}
 #if (!${VERSIONS.useOfficialMappings} && ${VERSIONS.minecraft.compareTo($mcver.MC1_21_11)} <= 0)
 yarn_mappings=${VERSIONS.yarn}
+#end
 #end
 loader_version=${VERSIONS.loader}
 #if (${LANGUAGE} == 'Kotlin')
@@ -29,9 +31,11 @@ mod_version = ${BUILD_COORDS.version}
 maven_group = ${BUILD_COORDS.groupId}
 archives_base_name = ${BUILD_COORDS.artifactId}
 
+#if (!$STONECUTTER)
 #if (${VERSIONS.useFabricApi})
 #if ($ADD_COMMENTS)
 # Dependencies
 #end
 fabric_version=${VERSIONS.fabricApi}
+#end
 #end

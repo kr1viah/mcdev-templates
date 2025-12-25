@@ -1,0 +1,17 @@
+plugins {
+    id("dev.kikugie.stonecutter")
+}
+
+stonecutter.active "${VERSIONS.minecraftVersion}"
+
+tasks.register("runClient_active_version") {
+    group = 'activeVersion'
+    def wantedTask = 'runClient'
+    dependsOn(rootProject.findProject(sc.current.version).tasks.named(wantedTask))
+}
+
+tasks.register("build_active_version") {
+    group = 'activeVersion'
+    def wantedTask = 'build'
+    dependsOn(rootProject.findProject(sc.current.version).tasks.named(wantedTask))
+}

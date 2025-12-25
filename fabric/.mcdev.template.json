@@ -52,6 +52,11 @@
       "default": "*"
     },
     {
+      "name": "STONECUTTER",
+      "type": "boolean",
+      "default": false
+    },
+    {
       "name": "CLIENT_INIT",
       "type": "boolean",
       "remember": "fabric.CLIENT_INIT",
@@ -332,6 +337,21 @@
       "template": "classtweaker.file.ft",
       "destination": "src/main/resources/${MOD_ID}.classtweaker",
       "condition": "$ACCESS_WIDENER"
+    },
+    {
+      "template": "stonecutter.gradle.ft",
+      "destination": "stonecutter.gradle",
+      "condition": "$DSL == 'Groovy' && $STONECUTTER"
+    },
+    {
+      "template": "stonecutter.gradle.kts.ft",
+      "destination": "stonecutter.gradle.kts",
+      "condition": "$DSL == 'Kotlin' && $STONECUTTER"
+    },
+    {
+      "template": "gradle.properties.versioned.ft",
+      "destination": "versions/${VERSIONS.minecraftVersion}/gradle.properties",
+      "condition": "$STONECUTTER"
     },
     {
       "template": "../licenses/${LICENSE.id}.txt.ft",

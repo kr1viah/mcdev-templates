@@ -33,7 +33,11 @@ loom {
     }
 #end
 #if ($ACCESS_WIDENER)
+#if ($STONECUTTER)
+    accessWidenerPath = rootProject.file("src/main/resources/${MOD_ID}.classtweaker")
+#else
     accessWidenerPath = file("src/main/resources/${MOD_ID}.classtweaker")
+#end
 #end
 }
 #end
@@ -90,6 +94,29 @@ processResources {
                 "loader_version": project.loader_version
     }
 }
+
+#if ($STONECUTTER)
+tasks.register("collectFile") {
+    group = "build"
+    mustRunAfter("build")
+
+    doLast {
+        copy {
+            from file("build/libs/${project.archives_base_name}-${project.mod_version}+${project.minecraft_version}.jar")
+            into rootProject.file("build/libs")
+        }
+        copy {
+            from file("build/libs/${project.archives_base_name}-${project.mod_version}+${project.minecraft_version}-sources.jar")
+            into rootProject.file("build/libs")
+        }
+    }
+}
+
+tasks.register("buildAndCollect") {
+    group = "build"
+    dependsOn(tasks.named("build"), tasks.named("collectFile"))
+}
+#end
 
 def targetJavaVersion = ${JAVA_VERSION}
 tasks.withType(JavaCompile).configureEach {
