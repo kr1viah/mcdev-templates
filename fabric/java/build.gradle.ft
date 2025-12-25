@@ -10,8 +10,9 @@ base {
     archivesName = project.archives_base_name
 }
 
-#if ($SPLIT_SOURCES && $VERSIONS.minecraftVersion.compareTo($mcver.MC1_18) >= 0)
+#if (($SPLIT_SOURCES && $VERSIONS.minecraftVersion.compareTo($mcver.MC1_18) >= 0) || $ACCESS_WIDENER)
 loom {
+#if ($SPLIT_SOURCES && $VERSIONS.minecraftVersion.compareTo($mcver.MC1_18) >= 0)
     splitEnvironmentSourceSets()
 
     mods {
@@ -20,6 +21,10 @@ loom {
             sourceSet sourceSets.client
         }
     }
+#end
+#if ($ACCESS_WIDENER)
+    accessWidenerPath = file("src/main/resources/${MOD_ID}.classtweaker")
+#end
 }
 #end
 

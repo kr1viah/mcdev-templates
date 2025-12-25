@@ -95,6 +95,12 @@
       "default": true
     },
     {
+      "name": "ACCESS_WIDENER",
+      "type": "boolean",
+      "remember": "fabric.ACCESS_WIDENER",
+      "default": false
+    },
+    {
       "name": "USE_DATAGEN",
       "type": "boolean",
       "default": true,
@@ -312,6 +318,11 @@
       "destination": "src/main/kotlin/${MAIN_CLASS.packagePath}/MixinPlugin.kt",
       "condition": "$LANGUAGE == 'Kotlin' && $MIXIN_PLUGIN",
       "openInEditor": true
+    },
+    {
+      "template": "classtweaker.file.ft",
+      "destination": "src/main/resources/${MOD_ID}.classtweaker",
+      "condition": "$ACCESS_WIDENER"
     },
     {
       "template": "../licenses/${LICENSE.id}.txt.ft",
