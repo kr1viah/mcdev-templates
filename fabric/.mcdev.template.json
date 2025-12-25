@@ -17,6 +17,15 @@
       "default": 0
     },
     {
+      "name": "DSL",
+      "type": "string",
+      "options": [
+        "Groovy",
+        "Kotlin"
+      ],
+      "default": 1
+    },
+    {
       "name": "VERSIONS",
       "type": "fabric_versions"
     },
@@ -212,24 +221,24 @@
       "condition": "$USE_GIT"
     },
     {
-      "template": "java/build.gradle.ft",
+      "template": "build.gradle.ft",
       "destination": "build.gradle",
-      "condition": "$LANGUAGE == 'Java'"
+      "condition": "$DSL == 'Groovy'"
     },
     {
-      "template": "java/settings.gradle.ft",
+      "template": "settings.gradle.ft",
       "destination": "settings.gradle",
-      "condition": "$LANGUAGE == 'Java'"
+      "condition": "$DSL == 'Groovy'"
     },
     {
-      "template": "kotlin/build.gradle.kts.ft",
+      "template": "build.gradle.kts.ft",
       "destination": "build.gradle.kts",
-      "condition": "$LANGUAGE == 'Kotlin'"
+      "condition": "$DSL == 'Kotlin'"
     },
     {
-      "template": "kotlin/settings.gradle.kts.ft",
+      "template": "settings.gradle.kts.ft",
       "destination": "settings.gradle.kts",
-      "condition": "$LANGUAGE == 'Kotlin'"
+      "condition": "$DSL == 'Kotlin'"
     },
     {
       "template": "gradle.properties.ft",

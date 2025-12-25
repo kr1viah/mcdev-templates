@@ -2,7 +2,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+#if ($LANGUAGE == 'Kotlin')
     kotlin("jvm") version "${KOTLIN_LOADER_VERSION.toString().split("kotlin.")[1]}"
+#else
+    kotlin("jvm") version "2.3.0"
+#end
     id("net.fabricmc.fabric-loom") version "${VERSIONS.loom}"
     id("maven-publish")
 }
@@ -73,14 +77,17 @@ dependencies {
     mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
 #end
     modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
+#if ($LANGUAGE == 'Kotlin')
     modImplementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_loader_version")}")
-
+#end
 #if (${VERSIONS.useFabricApi})
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
 #end
 #else
     implementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
+#if ($LANGUAGE == 'Kotlin')
     implementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_loader_version")}")
+#end
 
 #if (${VERSIONS.useFabricApi})
     implementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
@@ -98,8 +105,11 @@ tasks.processResources {
     filesMatching("fabric.mod.json") {
         expand("version" to project.version.toString(),
             "minecraft_version" to mcVer,
-            "loader_version" to project.property("loader_version").toString(),
-            "kotlin_loader_version" to project.property("kotlin_loader_version").toString())
+            "loader_version" to project.property("loader_version").toString()
+#if ($LANGUAGE == 'Kotlin')
+            ,"kotlin_loader_version" to project.property("kotlin_loader_version").toString()
+#end
+)
     }
 }
 
