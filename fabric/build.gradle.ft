@@ -1,5 +1,9 @@
 plugins {
+#if (${VERSIONS.minecraftVersion.toString().startsWith("1.")})
+    id 'fabric-loom' version '${VERSIONS.loom}'
+#else
     id 'net.fabricmc.fabric-loom' version '${VERSIONS.loom}'
+#end
     id 'maven-publish'
 }
 
