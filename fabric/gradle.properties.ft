@@ -15,7 +15,7 @@ org.gradle.configuration-cache=false
 #end
 #if (!$STONECUTTER)
 minecraft_version=${VERSIONS.minecraftVersion}
-#if (!${VERSIONS.useOfficialMappings} && ${VERSIONS.minecraft.compareTo($mcver.MC1_21_11)} <= 0)
+#if (!${VERSIONS.useOfficialMappings} && ${VERSIONS.minecraftVersion.toString().startsWith("1.")})
 yarn_mappings=${VERSIONS.yarn}
 #end
 #end

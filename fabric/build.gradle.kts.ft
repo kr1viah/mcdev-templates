@@ -11,7 +11,11 @@ plugins {
     id("maven-publish")
 }
 
+#if ($STONECUTTER)
+version = (project.property("mod_version") as String) + "+" + (sc.current.version as String)
+#else
 version = project.property("mod_version") as String
+#end
 group = project.property("maven_group") as String
 
 base {
@@ -42,6 +46,9 @@ tasks.register("buildAndCollect") {
 
 #if (${VERSIONS.minecraftVersion.toString().startsWith("1.")})
 val targetJavaVersion = ${JAVA_VERSION}
+#else
+val targetJavaVersion = 25
+#end
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
 #if ($ADD_COMMENTS)
@@ -97,7 +104,7 @@ dependencies {
     // To change the versions see the gradle.properties file
 #end
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
-#if (${VERSIONS.minecraft.compareTo($mcver.MC1_21_11)} <= 0)
+#if (${VERSIONS.minecraftVersion.toString().startsWith("1.")})
 #if (${VERSIONS.useOfficialMappings})
     mappings(loom.officialMojangMappings())
 #else

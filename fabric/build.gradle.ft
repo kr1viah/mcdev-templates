@@ -3,7 +3,11 @@ plugins {
     id 'maven-publish'
 }
 
+#if ($STONECUTTER)
+version = project.mod_version + "+" + sc.current.version
+#else
 version = project.mod_version
+#end
 group = project.maven_group
 
 base {
@@ -55,7 +59,7 @@ dependencies {
     // To change the versions see the gradle.properties file
 #end
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-#if (${VERSIONS.minecraft.compareTo($mcver.MC1_21_11)} <= 0)
+#if (${VERSIONS.minecraftVersion.toString().startsWith("1.")})
 #if (${VERSIONS.useOfficialMappings})
     mappings loom.officialMojangMappings()
 #else
@@ -117,8 +121,11 @@ tasks.register("buildAndCollect") {
     dependsOn(tasks.named("build"), tasks.named("collectFile"))
 }
 #end
-
+#if (${VERSIONS.minecraftVersion.toString().startsWith("1.")})
 def targetJavaVersion = ${JAVA_VERSION}
+#else
+def targetJavaVersion = 25
+#end
 tasks.withType(JavaCompile).configureEach {
 #if ($ADD_COMMENTS)
     // ensure that the encoding is set to UTF-8, no matter what the system default is
