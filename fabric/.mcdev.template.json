@@ -253,7 +253,7 @@
       "template": "../gradle-wrapper.properties.ft",
       "destination": "gradle/wrapper/gradle-wrapper.properties",
       "properties": {
-        "GRADLE_VERSION": "9.2.1"
+        "GRADLE_VERSION": "9.5.1"
       }
     },
     {
